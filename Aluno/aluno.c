@@ -6,3 +6,7 @@ typedef struct Aluno {
     struct Aluno *prox;
     struct Aluno *prev;
 } Aluno;
+
+typedef struct listaalunos{
+    Aluno *cabeca;
+}ListaAlunos;
