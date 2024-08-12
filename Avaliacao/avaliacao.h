@@ -12,10 +12,16 @@ typedef struct _notaaluno{
     Aluno *aluno;
 } NotaAluno;
 
-typedef struct _avaliacao{
+typedef struct __avaliacao{
     char nome[MAXLEN];
     int valortotal;
     NotaAluno notas[MAXLEN];
+    struct __avaliacao *prox;
+    struct __avaliacao *ant;
 } Avaliacao;
+
+typedef struct __listaavaliacoes{
+    Avaliacao *cabeca;
+} ListaAvaliacoes;
 
 #endif //AVALIACAO_H
