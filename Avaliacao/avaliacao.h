@@ -8,13 +8,13 @@
 * */
 
 typedef struct _notaaluno{
-    int nota;
+    float nota;
     Aluno *aluno;
 } NotaAluno;
 
 typedef struct __avaliacao{
     char nome[MAXLEN];
-    int valortotal;
+    floatV valortotal;
     NotaAluno notas[MAXLEN];
     struct __avaliacao *prox;
     struct __avaliacao *ant;

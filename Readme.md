@@ -32,7 +32,7 @@ O tipo abstrato Aula armazena informações sobre a frequência do aluno em uma 
 
 O tipo abstrato NotaAluno armazena informações sobre as notas atribuídas aos alunos:
 
-* **Nota**: Um valor inteiro representando a nota obtida pelo aluno.
+* **Nota**: Um valor do tipo float representando a nota obtida pelo aluno.
 * **Ponteiro** para Aluno: Uma referência para o aluno associado a esta nota.
 
 ### Tipo Abstrato: Avaliacao
