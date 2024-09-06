@@ -94,39 +94,4 @@ void cadastraAluno(SalaDeAula * turma){
     }
 }
 
-void cadastraAvaliacao(SalaDeAula * Turma){
-    Avaliacao * aux = Turma->ListaAvaliacoes->cabeca;
-    Avaliacao * nova = (Avaliacao*)malloc(sizeof(Avaliacao));
-
-    nova->prox = NULL;
-
-    printf("Digite o nome da avaliacao: ");
-    fgets(nova->nome, MAXLEN, stdin);
-
-    printf("Digite o valor total da avaliacao: ");
-    scanf("%d", nova->valortotal);
-
-    // colocando a nota de cada aluno na avaliacao
-    Aluno * alAux = Turma->alunos->cabeca;
-    float nota;
-    int indice = 0;
-    while(alAux != NULL){
-        printf("Digite a nota do aluno %s: ", alAux->name);
-        scanf("%f", &nota);
-        nova->notas[indice]->aluno = alAux;
-        nova->notas[indice]->nota = nota;
-        indice++;
-    }
-
-    while(aux != NULL && aux->prox != NULL){
-        aux = aux->prox;
-    }
-    if(aux == NULL){ // se for a primeira avaliacao
-        aux = nova;
-        return;
-    }
-    aux->prox = nova;   // se ja tiverem avaliacoes cadastradas
-    
-}
-
 #endif //ALUNO_H
