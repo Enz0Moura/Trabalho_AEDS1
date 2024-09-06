@@ -111,8 +111,8 @@ void cadastraAvaliacao(SalaDeAula * Turma){
     while(alAux != NULL){
         printf("Digite a nota do aluno %s: ", alAux->nome);
         scanf("%f", &nota);
-        nova->notas[i]->aluno = alAux;
-        nova->notas[i]->nota = nota;
+        nova->notas[indice]->aluno = alAux;
+        nova->notas[indice]->nota = nota;
         indice++;
     }
 
