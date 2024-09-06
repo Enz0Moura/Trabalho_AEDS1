@@ -12,12 +12,12 @@ typedef struct _notaaluno{
     Aluno *aluno;
 } NotaAluno;
 
+// todo cria avaliacao inicializa notas com NULL
 typedef struct __avaliacao{
     char nome[MAXLEN];
-    floatV valortotal;
+    float valortotal;
     NotaAluno notas[MAXLEN];
     struct __avaliacao *prox;
-    struct __avaliacao *ant;
 } Avaliacao;
 
 typedef struct __listaavaliacoes{
