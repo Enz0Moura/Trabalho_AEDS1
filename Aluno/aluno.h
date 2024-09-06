@@ -4,6 +4,8 @@
 #define MAXDAY 18
 #include "presenca.h"
 #include "avaliacao.h"
+#include "saladeaula.h"
+#include <stdlib.h>
 #include <stdio.h> // para poder usar o stdin no fgets
 
 /* Aluno armazenará o nome do aluno, seu número de matrícula, uma lista de aulas com sua presença e a referência para a lista encadeada.*/
@@ -23,7 +25,7 @@ typedef struct listaalunos{
     Aluno *fim;
 }ListaAlunos;
 
-void cadastraAluno(SalaDeAula * Turma){
+void cadastraAluno(SalaDeAula * turma){
     printf("+=-=-=-=-=-=-=-=-=+\n");
     printf("|CADASTRE UM ALUNO|");
     printf("+=-=-=-=-=-=-=-=-=+\n");    
@@ -44,12 +46,12 @@ void cadastraAluno(SalaDeAula * Turma){
     scanf("%d", novo->anoEntrada);
 
     // colocando o aluno na lista de alunos da turma
-    Aluno * auxiliar = Turma->alunos->fim;
+    Aluno * auxiliar = turma->alunos->fim;
     auxiliar->prox = novo;
-    Turma->alunos->fim = novo;
+    turma->alunos->fim = novo;
     
 
-    if(Turma->aulas != NULL){
+    if(turma->aulas != NULL){
         char aux;
         int i = 0;
         while(i<MAX_AULAS && turma->aulas[i] != NULL){
@@ -75,7 +77,7 @@ void cadastraAluno(SalaDeAula * Turma){
     }
 
     if(Turma->avaliacoes != NULL){
-        Avalicao * aux = Turma->avaliacoes->cabeca;
+        Avaliacao * aux = Turma->avaliacoes->cabeca;
         float nota;
         while(aux != NULL){
             printf("Digite a nota do aluno na avalicao %s", aux->nome);
@@ -109,7 +111,7 @@ void cadastraAvaliacao(SalaDeAula * Turma){
     float nota;
     int indice = 0;
     while(alAux != NULL){
-        printf("Digite a nota do aluno %s: ", alAux->nome);
+        printf("Digite a nota do aluno %s: ", alAux->name);
         scanf("%f", &nota);
         nova->notas[indice]->aluno = alAux;
         nova->notas[indice]->nota = nota;
