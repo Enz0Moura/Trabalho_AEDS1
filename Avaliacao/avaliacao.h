@@ -16,7 +16,7 @@ typedef struct _notaaluno{
 typedef struct __avaliacao{
     char nome[MAXLEN];
     float valortotal;
-    NotaAluno notas[MAXLEN];
+    NotaAluno* notas[MAXLEN];
     struct __avaliacao *prox;
 } Avaliacao;
 
@@ -25,7 +25,7 @@ typedef struct __listaavaliacoes{
 } ListaAvaliacoes;
 
 void cadastraAvaliacao(SalaDeAula * Turma){
-    Avaliacao * aux = Turma->ListaAvaliacoes->cabeca;
+    Avaliacao * aux = Turma->avaliacoes->cabeca;
     Avaliacao * nova = (Avaliacao*)malloc(sizeof(Avaliacao));
 
     nova->prox = NULL;
@@ -34,7 +34,7 @@ void cadastraAvaliacao(SalaDeAula * Turma){
     fgets(nova->nome, MAXLEN, stdin);
 
     printf("Digite o valor total da avaliacao: ");
-    scanf("%d", nova->valortotal);
+    scanf("%f", nova->valortotal);
 
     // colocando a nota de cada aluno na avaliacao
     Aluno * alAux = Turma->alunos->cabeca;

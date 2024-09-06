@@ -12,6 +12,8 @@
 // presenca nao pode estar dentro de aluno pq se nao ao cadastrar um novo
 // nao tenho como saber se ja existem chamadas que foram realizadas
 
+//todo adicionar forma de armazenar faltas
+
 typedef struct __Aluno {
     char name[MAXTAM];
     int Mat;
@@ -76,8 +78,8 @@ void cadastraAluno(SalaDeAula * turma){
         }
     }
 
-    if(Turma->avaliacoes != NULL){
-        Avaliacao * aux = Turma->avaliacoes->cabeca;
+    if(turma->avaliacoes != NULL){
+        Avaliacao * aux = turma->avaliacoes->cabeca;
         float nota;
         while(aux != NULL){
             printf("Digite a nota do aluno na avalicao %s", aux->nome);

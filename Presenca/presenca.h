@@ -6,6 +6,7 @@
 
 /* Aula armazenará um dia de aula e a presença de um aluno como true ou false.*/
 
+
 typedef struct __presenca{
     Aluno * aluno;
     bool foi;
@@ -17,7 +18,7 @@ typedef struct __dia{
     Presenca * cabeca;
 } Dia;
 
-typedef Dia  Aulas[MAX_AULAS]; // vetor de dias
+typedef Dia *Aulas[MAX_AULAS]; // vetor de dias
 
 #endif //AULA_H
  
