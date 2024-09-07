@@ -6,6 +6,7 @@
 #include "../ListaAlunos/listaalunos.h"
 #include "../Presenca/presenca.h"
 #include "../Avaliacao/avaliacao.h"
+#include "../utils/utils.h"
 
 typedef struct __Aluno Aluno;
 typedef struct listaalunos ListaAlunos;
@@ -43,9 +44,12 @@ void cadastraAluno(SalaDeAula *turma) {
 
     printf("\nDigite a matricula: ");
     scanf("%d", &(novo->Mat));
+    flush_in();
 
     printf("\nDigite o ano de entrada do aluno: ");
     scanf("%d", &(novo->anoEntrada));
+    flush_in();
+
 
     // colocando o aluno na lista de alunos da turma
 
@@ -63,9 +67,11 @@ void cadastraAluno(SalaDeAula *turma) {
         while (i < MAX_AULAS && turma->aulas[i] != NULL) {
             printf("\nPresenca do aluno no dia %d (P/F): ", turma->aulas[i]->dia);
             scanf("%c", &aux);
+            flush_in();
             while (aux != 'P' && aux != 'F') {
                 printf("\nA presenca deve ser P ou F, digite novamente!");
                 scanf("%c", &aux);
+                flush_in();
             }
             bool foi = aux == 'P' ? true : false; // se foi retorna true se nao retorna false
             Presenca *hj = turma->aulas[i]->cabeca;
@@ -88,6 +94,8 @@ void cadastraAluno(SalaDeAula *turma) {
         while (aux != NULL) {
             printf("Digite a nota do aluno na avalicao %s", aux->nome);
             scanf("%f", &nota);
+            flush_in();
+
             int indice = 0;
             while (aux->notas[indice] != NULL) {
                 indice++;
@@ -111,7 +119,7 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
 
     printf("Digite o valor total da avaliacao: ");
     scanf("%f", &nova->valortotal);
-
+    flush_in();
     // colocando a nota de cada aluno na avaliacao
     Aluno *alAux = Turma->alunos->cabeca;
     float nota;
@@ -119,6 +127,7 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     while (alAux != NULL) {
         printf("Digite a nota do aluno %s: ", alAux->name);
         scanf("%f", &nota);
+        flush_in();
         nova->notas[indice]->aluno = alAux;
         nova->notas[indice]->nota = nota;
         indice++;

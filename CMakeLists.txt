@@ -5,7 +5,7 @@ project(Trabalho)
 set(CMAKE_C_COMPILER gcc)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 
-set(SRC_DIRS Aluno ListaAlunos Hashing Avaliacao Presenca SalaDeAula)
+set(SRC_DIRS utils Aluno ListaAlunos Hashing Avaliacao Presenca SalaDeAula)
 
 include_directories(${SRC_DIRS})
 
