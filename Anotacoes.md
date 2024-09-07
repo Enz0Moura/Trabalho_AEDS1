@@ -8,3 +8,6 @@ Cadastra a nota maxima possivel da avaliacao; cadastra as notasde cada aluno par
 1. [x] 1 .c e 1 .h para aluno
 2. [x] 1.c e 1.h para avaliacoes
 3. [ ] 1.c e 1.h para hashing
+4. [x] Implementações de aluno
+5. [ ] Tabela hash de aluno
+6. [ ] Implementações sala de aula
