@@ -1,8 +1,12 @@
 #include <stdio.h>
-#include "SalaDeAula/SalaDeAula.h"
+#include "SalaDeAula/saladeaula.h"
 
-void main(){
+int main(){
     SalaDeAula * sala = saladeaula_cria();
-    bool test = true;
-
+    if (sala != NULL){
+      printf("Sala De Aula criada!\n");
+      return 0;
+      }
+    printf("Sala De Aula não foi criada :(\n");
+    return -1;
 }

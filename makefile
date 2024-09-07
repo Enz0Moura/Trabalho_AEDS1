@@ -6,7 +6,7 @@ CC = gcc
 CFLAGS = -Wall -c
 
 # Diretórios de fontes e includes
-SRC_DIRS = Aluno ListaAlunos Avaliacao Hashing Presenca SalaDeAula
+SRC_DIRS = Aluno ListaAlunos Hashing Avaliacao Presenca SalaDeAula
 OBJ_DIR = objs
 INCLUDES = $(addprefix -I, $(SRC_DIRS))
 
