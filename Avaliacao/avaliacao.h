@@ -3,6 +3,8 @@
 #define MAXLEN 100
 #include "../Aluno/aluno.h"
 #include "../SalaDeAula/saladeaula.h"
+#include <stdlib.h>
+#include <stdio.h>
 /* Avaliação armazenará uma lista de alunos com suas respectivas notas.
 * Armazenará o valor total para o cálculo da média do aluno.
 * */
@@ -37,10 +39,10 @@ void cadastraAvaliacao(SalaDeAula * Turma){
     fgets(nova->nome, MAXLEN, stdin);
 
     printf("Digite o valor total da avaliacao: ");
-    scanf("%f", nova->valortotal);
+    scanf("%f", (&nova->valortotal));
 
     // colocando a nota de cada aluno na avaliacao
-    Aluno * alAux = Turma->alunos->cabeca;
+    Aluno *alAux = Turma->alunos->cabeca;
     float nota;
     int indice = 0;
     while(alAux != NULL){

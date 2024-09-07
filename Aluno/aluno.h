@@ -24,10 +24,6 @@ typedef struct __Aluno {
     struct __Aluno *prox;
 } Aluno;
 
-typedef struct listaalunos{
-    Aluno *cabeca;
-    Aluno *fim;
-}ListaAlunos;
 
 void cadastraAluno(SalaDeAula * turma){
     printf("+=-=-=-=-=-=-=-=-=+\n");
@@ -44,10 +40,10 @@ void cadastraAluno(SalaDeAula * turma){
     fgets(novo->curso, MAXTAM, stdin);
 
     printf("\nDigite a matricula: ");
-    scanf("%d", novo->Mat);
+    scanf("%d", &(novo->Mat));
 
     printf("\nDigite o ano de entrada do aluno: ");
-    scanf("%d", novo->anoEntrada);
+    scanf("%d", &(novo->anoEntrada));
 
     // colocando o aluno na lista de alunos da turma
     Aluno * auxiliar = turma->alunos->fim;
@@ -59,14 +55,14 @@ void cadastraAluno(SalaDeAula * turma){
         char aux;
         int i = 0;
         while(i<MAX_AULAS && turma->aulas[i] != NULL){
-            printf("\nPresenca do aluno no dia %d (P/F): ", turma->aulas[i]->dia);
+            printf("\nPresenca do aluno no dia %d (P/F): ", (*turma->aulas)[i]->dia);
             scanf("%c", &aux);
             while(aux != 'P' && aux != 'F'){
                 printf("\nA presenca deve ser P ou F, digite novamente!");
                 scanf("%c", &aux);
             }
             bool foi = aux == 'P'? true:false; // se foi retorna true se nao retorna false
-            Presenca * hj = turma->aulas[i]->cabeca;
+            Presenca * hj = (*turma->aulas)[i]->cabeca;
             while(hj->prox != NULL){
                 hj = hj->prox;
             }
@@ -85,7 +81,7 @@ void cadastraAluno(SalaDeAula * turma){
         float nota;
         while(aux != NULL){
             printf("Digite a nota do aluno na avalicao %s", aux->nome);
-            scanf("%d", &nota);
+            scanf("%f", &nota);
             int indice = 0;
             while(aux->notas[indice] != NULL){
                 indice++;
