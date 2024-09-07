@@ -2,9 +2,9 @@
 #define ALUNO_H
 #define MAXTAM 100
 #define MAXDAY 18
-#include "presenca.h"
-#include "avaliacao.h"
-#include "saladeaula.h"
+#include "../Presenca/presenca.h"
+#include "../Avaliacao/avaliacao.h"
+#include "../SalaDeAula/saladeaula.h"
 #include <stdlib.h>
 #include <stdio.h> // para poder usar o stdin no fgets
 
@@ -13,6 +13,8 @@
 // nao tenho como saber se ja existem chamadas que foram realizadas
 
 //todo adicionar forma de armazenar faltas
+
+typedef struct saladeaula SalaDeAula;
 
 typedef struct __Aluno {
     char name[MAXTAM];

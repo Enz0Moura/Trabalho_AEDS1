@@ -1,11 +1,14 @@
 #ifndef AVALIACAO_H
 #define AVALIACAO_H
 #define MAXLEN 100
-#include "aluno.h"
-
+#include "../Aluno/aluno.h"
+#include "../SalaDeAula/saladeaula.h"
 /* Avaliação armazenará uma lista de alunos com suas respectivas notas.
 * Armazenará o valor total para o cálculo da média do aluno.
 * */
+
+typedef struct __Aluno Aluno;
+typedef struct saladeaula SalaDeAula;
 
 typedef struct _notaaluno{
     float nota;
