@@ -208,17 +208,22 @@ void realizaChamada(SalaDeAula *turma) {
 }
 
 void relatorioAlunos(SalaDeAula *turma) {
-    Aluno *aux = turma->alunos->cabeca;
+
 
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    while (aux != NULL) {
-        int somaNotas = 0;
-        printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
-        aux = aux->prox;
+    TabelaHashAluno* tabela = turma->alunos;
+    for (int i = 0; i < tabela->contador_indices; i++) {
+        int indice = tabela->indices_validos[i];
+        Aluno *aux = tabela->tabela[indice]->cabeca;
+        while (aux != NULL) {
+            int somaNotas = 0;
+            printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
+            aux = aux->prox;
+        }
     }
 }
 
@@ -241,9 +246,9 @@ void relatorioNotas(SalaDeAula *turma) {
 
     printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
 
-    int menor = aux->notas[0]->nota;
-    int maior = aux->notas[0]->nota;
-    int soma = 0;
+    float menor = aux->notas[0]->nota;
+    float maior = aux->notas[0]->nota;
+    float soma = 0;
     int i = 0;
     while (aux->notas[i] != NULL && i < MAXLEN) {
         soma += aux->notas[i]->nota;
@@ -259,7 +264,7 @@ void relatorioNotas(SalaDeAula *turma) {
 
     i = 0;
     while (aux->notas[i] != NULL) {
-        printf("%f\n", aux->notas[i]->nota);
+        printf("\n%f\n", aux->notas[i]->nota);
         i++;
     }
 }
