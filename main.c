@@ -9,7 +9,8 @@ int main() {
         printf("|Sistema de gerenciamento escolar       |");
         printf("\n|Digite 1 para adicionar um aluno     |");
         printf("\n|Digite 2 para adicionar uma avaliação|");
-        printf("\n|Digite 3 para sair                   |");
+        printf("\n|Digite 3 para realizar a chamada     |");
+        printf("\n|Digite 4 para sair                   |");
         printf("\n+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+\n");
         char operacao;
         while (1) {
@@ -23,6 +24,8 @@ int main() {
                     cadastraAvaliacao(sala);
                     break;
                 case '3':
+                    realizaChamada(sala);
+                case '4':
                     return 0;
                 default:
                     printf("\nOperacao invalida, tente novamente.\n");

@@ -38,6 +38,7 @@ void cadastraAluno(SalaDeAula *turma) {
 
     Aluno *novo = (Aluno *) malloc(sizeof(Aluno));
     novo->prox = NULL;
+    novo->qtdeFaltas = 0;
 
     printf("Digite o nome do aluno: ");
     fgets(novo->name, MAXTAM, stdin);
@@ -167,42 +168,38 @@ void realizaChamada(SalaDeAula * turma){
     scanf("%d", &data);
     
     int i = 0;
-    Dia * auxiliar;
-    while (turma->aulas[i+1] != NULL)
+    Dia * auxiliar = criaDia();
+    while (turma->aulas[i] != NULL)
     {
         i++;
     }
 
-    auxiliar = turma->aulas[i];
-    Presenca * auxPre = turma->aulas[i]->cabeca;
-    Aluno * alAux = turma->alunos->cabeca;
-    char c;
-    // fazendo para o primeiro cara 
-    printf("Marque a presenca do aluno %s (P/F)", alAux->name);
-    scanf("%c", &c);
-    while(c != 'P' && c != 'F'){
-        printf("\nA presenca deve ser P ou F, digite novamente!");
-        scanf("%c", &c);
-    }
-    bool esteve = c == 'P'? true:false; // se foi retorna true se nao retorna false
-    auxPre->aluno = alAux;
-    auxPre->foi = esteve;   
-    alAux = alAux->prox;
-    // continuo na cabeca
-    while(alAux != NULL){
-        Presenca * auxPre2;
+    turma->aulas[i] = auxiliar;
+    if(turma->alunos->cabeca != NULL){
+        Aluno * alAux = turma->alunos->cabeca;
+    
+        char c;
+        // fazendo para o primeiro cara 
         printf("Marque a presenca do aluno %s (P/F)", alAux->name);
         scanf("%c", &c);
         while(c != 'P' && c != 'F'){
-                printf("\nA presenca deve ser P ou F, digite novamente!");
-                scanf("%c", &c);
+            printf("\nA presenca deve ser P ou F, digite novamente!");
+            scanf("%c", &c);
+        }
+        Presenca * auxPre = criaPresenca(alAux, c);
+        alAux = alAux->prox;
+        // continuo na cabeca
+        while(alAux != NULL){
+            printf("Marque a presenca do aluno %s (P/F)", alAux->name);
+            scanf("%c", &c);
+            while(c != 'P' && c != 'F'){
+                    printf("\nA presenca deve ser P ou F, digite novamente!");
+                    scanf("%c", &c);
             }
-        esteve = c == 'P'? true:false; // se foi retorna true se nao retorna false
-        auxPre2->aluno = alAux;
-        auxPre2->foi = esteve;
-        auxPre->prox = auxPre2;
-        auxPre = auxPre2; 
-        alAux = alAux->prox;  
+            auxPre->prox = criaPresenca(alAux, c);
+            auxPre = auxPre->prox; 
+            alAux = alAux->prox;  
+        }
     }
 }   
 

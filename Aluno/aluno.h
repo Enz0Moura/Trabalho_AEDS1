@@ -3,8 +3,6 @@
 #define MAXTAM 100
 #define MAXDAY 18
 
-#include "../Presenca/presenca.h"
-#include "../Avaliacao/avaliacao.h"
 #include <stdlib.h>
 #include <stdio.h> // para poder usar o stdin no fgets
 
@@ -22,6 +20,7 @@ typedef struct __Aluno {
     char curso[MAXTAM];
     int anoEntrada;
     struct __Aluno *prox;
+    int qtdeFaltas;
 } Aluno;
 
 
