@@ -21,6 +21,7 @@ int main() {
                     break;
                 case '2':
                     cadastraAvaliacao(sala);
+                    break;
                 case '3':
                     return 0;
                 default:
@@ -35,3 +36,4 @@ int main() {
     }
     return -1;
 }
+//todo: A maneira que estamos fazendo para armazenar as notas é MUITO custosa.

@@ -38,9 +38,11 @@ void cadastraAluno(SalaDeAula *turma) {
 
     printf("Digite o nome do aluno: ");
     fgets(novo->name, MAXTAM, stdin);
+    remove_newline(novo->name);
 
     printf("\nDigite o Curso do aluno: ");
     fgets(novo->curso, MAXTAM, stdin);
+    remove_newline(novo->curso);
 
     printf("\nDigite a matricula: ");
     scanf("%d", &(novo->Mat));
@@ -91,8 +93,10 @@ void cadastraAluno(SalaDeAula *turma) {
     if (turma->avaliacoes != NULL) {
         Avaliacao *aux = turma->avaliacoes->cabeca;
         float nota;
+        NotaAluno *notaAux;
+
         while (aux != NULL) {
-            printf("Digite a nota do aluno na avalicao %s", aux->nome);
+            printf("Digite a nota de %s na avalicao %s: ", novo->name, aux->nome);
             scanf("%f", &nota);
             flush_in();
 
@@ -100,9 +104,10 @@ void cadastraAluno(SalaDeAula *turma) {
             while (aux->notas[indice] != NULL) {
                 indice++;
             }
-            aux->notas[indice]->nota = nota;
-            aux->notas[indice]->aluno = novo;
-
+            notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
+            notaAux->aluno = novo;
+            notaAux->nota = nota;
+            aux->notas[indice] = notaAux;
             aux = aux->prox;
         }
     }
@@ -116,6 +121,7 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
 
     printf("Digite o nome da avaliacao: ");
     fgets(nova->nome, MAXLEN, stdin);
+    remove_newline(nova->nome);
 
     printf("Digite o valor total da avaliacao: ");
     scanf("%f", &nova->valortotal);
@@ -123,25 +129,30 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     // colocando a nota de cada aluno na avaliacao
     Aluno *alAux = Turma->alunos->cabeca;
     float nota;
-    int indice = 0;
+    NotaAluno *notaAux;
+    int indice = -1;
+
     while (alAux != NULL) {
+        indice++;
         printf("Digite a nota do aluno %s: ", alAux->name);
         scanf("%f", &nota);
         flush_in();
-        nova->notas[indice]->aluno = alAux;
-        nova->notas[indice]->nota = nota;
-        indice++;
+        notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
+        notaAux->aluno = alAux;
+        notaAux->nota = nota;
+        nova->notas[indice] = notaAux;
+        alAux = alAux->prox;
     }
 
     while (aux != NULL && aux->prox != NULL) {
         aux = aux->prox;
     }
     if (aux == NULL) {
-        // se for a primeira avaliacao
-        aux = nova;
+        Turma->avaliacoes->cabeca = nova;
         return;
     }
     aux->prox = nova; // se ja tiverem avaliacoes cadastradas
+    return;
 }
 
 #endif
