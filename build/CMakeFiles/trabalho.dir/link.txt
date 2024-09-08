@@ -1,2 +1,0 @@
-/usr/bin/ar qc objs/libtrabalho.a CMakeFiles/trabalho.dir/SalaDeAula/saladeaula.c.o
-/usr/bin/ranlib objs/libtrabalho.a

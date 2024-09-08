@@ -1,1 +1,0 @@
-gcc  -Wall -g CMakeFiles/programa.dir/main.c.o -o programa  objs/libtrabalho.a 
