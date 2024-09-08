@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/build",
+  "command": "gcc  -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Aluno -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/ListaAlunos -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Hashing -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Avaliacao -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Presenca -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/SalaDeAula  -Wall -g -o CMakeFiles/trabalho.dir/SalaDeAula/saladeaula.c.o -c /home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/SalaDeAula/saladeaula.c",
+  "file": "/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/SalaDeAula/saladeaula.c"
+},
+{
+  "directory": "/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/build",
+  "command": "gcc  -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Aluno -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/ListaAlunos -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Hashing -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Avaliacao -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/Presenca -I/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/SalaDeAula  -Wall -g -o CMakeFiles/programa.dir/main.c.o -c /home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/main.c",
+  "file": "/home/pedro/Desktop/Trabalho_AEDS/Trabalho_AEDS1/main.c"
+}
+]

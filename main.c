@@ -9,4 +9,6 @@ int main(){
       }
     printf("Sala De Aula não foi criada :(\n");
     return -1;
+
+    cadastraAluno(sala);
 }
