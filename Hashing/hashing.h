@@ -5,7 +5,9 @@
 #ifndef HASHING_H
 #define HASHING_H
 #include <string.h>
-#include "aluno.h"
+#include "../Aluno/aluno.h"
+#include "../ListaAlunos/listaalunos.h"
+#include "../utils/utils.h"
 #define TABLE_SIZE 100
 
 

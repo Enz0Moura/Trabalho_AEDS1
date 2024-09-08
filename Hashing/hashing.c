@@ -1,6 +1,4 @@
-#include <stdio.h>
-
-/* Usar hashing duplo*/
+#include "hashing.h"
 
 
 
