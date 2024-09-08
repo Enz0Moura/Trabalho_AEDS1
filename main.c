@@ -25,15 +25,17 @@ int main() {
                     break;
                 case '3':
                     realizaChamada(sala);
+                    break;
                 case '4':
                     return 0;
                 default:
                     printf("\nOperacao invalida, tente novamente.\n");
             }
             printf("+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+\n");
-            printf("|Digite 1 para adicionar um aluno     |");
+            printf("|Digite 1 para adicionar um aluno       |");
             printf("\n|Digite 2 para adicionar uma avaliação|");
-            printf("\n|Digite 3 para sair                   |");
+            printf("\n|Digite 3 para realizar a chamada     |");
+            printf("\n|Digite 4 para sair                   |");
             printf("\n+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+\n");
         }
     }
