@@ -2,6 +2,7 @@
 #define SALADEAULA_H
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "../Aluno/aluno.h"
 #include "../ListaAlunos/listaalunos.h"
 #include "../Presenca/presenca.h"
@@ -208,47 +209,55 @@ void realizaChamada(SalaDeAula *turma) {
     }
 }
 
-void relatorioAlunos(SalaDeAula * turma){
-    Aluno * aux = turma->alunos->cabeca;
+void relatorioAlunos(SalaDeAula *turma) {
+    Aluno *aux = turma->alunos->cabeca;
 
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    while(aux != NULL){
+    while (aux != NULL) {
         int somaNotas = 0;
         printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
         aux = aux->prox;
     }
 }
 
-void relatorioNotas(SalaDeAula * turma){
-    char * nome;
+void relatorioNotas(SalaDeAula *turma) {
+    char nome[MAXLEN];
     printf("Digite o nome da avaliacao que deseja consultar: ");
     fgets(nome, MAXLEN, stdin);
+    remove_newline(nome);
 
-    Avaliacao * aux = turma->avaliacoes->cabeca;
-    while(aux->nome != nome){
+    Avaliacao *aux = turma->avaliacoes->cabeca;
+    if (aux == NULL) return;
+
+    while (strcmp(aux->nome, nome) != 0) {
         aux = aux->prox;
+        if (aux == NULL) {
+            printf("Nome da avaliacao nao existe!");
+            return;
+        };
     }
 
     int menor = aux->notas[0]->nota;
     int maior = aux->notas[0]->nota;
     int soma = 0;
     int i = 0;
-    while(aux->notas[i]->nota != -1 && i < MAXLEN){
+    while (aux->notas[i] != NULL && i < MAXLEN) {
         soma += aux->notas[i]->nota;
-        if(aux->notas[i]->nota > maior)
+        if (aux->notas[i]->nota > maior)
             maior = aux->notas[i]->nota;
-        if(aux->notas[i]->nota < menor)
+        if (aux->notas[i]->nota < menor)
             menor = aux->notas[i]->nota;
         i++;
     }
 
-    
-    for(int i = 0; i < MAXLEN; i++){
-        printf("%d\n", aux->notas[i]->nota);
+    i = 0;
+    while (aux->notas[i] != NULL) {
+        printf("%f\n", aux->notas[i]->nota);
+        i++;
     }
 }
 

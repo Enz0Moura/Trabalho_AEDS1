@@ -33,10 +33,12 @@ int main() {
                     break;
                 case '5':
                     relatorioNotas(sala);
+                    break;
                 case '6':
                     return 0;
                 default:
                     printf("\nOperacao invalida, tente novamente.\n");
+                    break;
             }
         printf("+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
         printf("|Sistema de gerenciamento escolar                        |");
