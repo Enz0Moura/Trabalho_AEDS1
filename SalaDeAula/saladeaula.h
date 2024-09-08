@@ -175,7 +175,7 @@ void realizaChamada(SalaDeAula *turma) {
     Aluno *alAux;
     char c;
     for (int j = 0; j < turma->alunos->contador_indices; j++) {
-        int indice = turma->alunos->indices_validos[i];
+        int indice = turma->alunos->indices_validos[j];
         alAux = turma->alunos->tabela[indice]->cabeca;
         while (alAux != NULL) {
             // fazendo para o primeiro cara
