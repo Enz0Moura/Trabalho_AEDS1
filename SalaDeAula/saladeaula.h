@@ -2,6 +2,7 @@
 #define SALADEAULA_H
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "../Aluno/aluno.h"
 #include "../ListaAlunos/listaalunos.h"
 #include "../Presenca/presenca.h"
@@ -114,7 +115,6 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     Avaliacao *nova = (Avaliacao *) malloc(sizeof(Avaliacao));
 
     nova->prox = NULL;
-
     printf("Digite o nome da avaliacao: ");
     fgets(nova->nome, MAXLEN, stdin);
     remove_newline(nova->nome);
@@ -207,5 +207,61 @@ void realizaChamada(SalaDeAula *turma) {
     }
 }
 
+void relatorioAlunos(SalaDeAula *turma) {
+    Aluno *aux = turma->alunos->cabeca;
+
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    while (aux != NULL) {
+        int somaNotas = 0;
+        printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
+        aux = aux->prox;
+    }
+}
+
+void relatorioNotas(SalaDeAula *turma) {
+    char nome[MAXLEN];
+    printf("Digite o nome da avaliacao que deseja consultar: ");
+    fgets(nome, MAXLEN, stdin);
+    remove_newline(nome);
+
+    Avaliacao *aux = turma->avaliacoes->cabeca;
+    if (aux == NULL) return;
+
+    while (strcmp(aux->nome, nome) != 0) {
+        aux = aux->prox;
+        if (aux == NULL) {
+            printf("Nome da avaliacao nao existe!");
+            return;
+        };
+    }
+
+    printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
+
+    int menor = aux->notas[0]->nota;
+    int maior = aux->notas[0]->nota;
+    int soma = 0;
+    int i = 0;
+    while (aux->notas[i] != NULL && i < MAXLEN) {
+        soma += aux->notas[i]->nota;
+        if (aux->notas[i]->nota > maior)
+            maior = aux->notas[i]->nota;
+        if (aux->notas[i]->nota < menor)
+            menor = aux->notas[i]->nota;
+        i++;
+    }
+    float media = soma /i+1;
+    printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
+
+
+    i = 0;
+    while (aux->notas[i] != NULL) {
+        printf("%f\n", aux->notas[i]->nota);
+        i++;
+    }
+}
 
 #endif
