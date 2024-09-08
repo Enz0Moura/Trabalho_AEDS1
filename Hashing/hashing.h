@@ -15,6 +15,8 @@ typedef struct listaalunos ListaAlunos;
 
 typedef struct __tabelaHashAluno {
     ListaAlunos *tabela[TABLE_SIZE];
+    int indices_validos[TABLE_SIZE];
+    int contador_indices;
 } TabelaHashAluno;
 
 TabelaHashAluno *cria_tabela_hash_aluno() {
@@ -52,6 +54,7 @@ void insere_tabela_aluno(TabelaHashAluno *tabela, Aluno *aluno) {
     if (aux == NULL) {
         tabela->tabela[chave]->cabeca = aluno;
         tabela->tabela[chave]->fim = aluno;
+        tabela->indices_validos[tabela->contador_indices++] = chave;
         return;
     }
     while (aux->prox != NULL) {
@@ -90,8 +93,9 @@ Aluno *encontra_aluno(TabelaHashAluno *tabela) {
 }
 
 void percorrer_tabela(TabelaHashAluno *tabela) {
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        Aluno *atual = tabela->tabela[i]->cabeca;
+    for (int i = 0; i < tabela->contador_indices; i++) {
+        int indice = tabela->indices_validos[i];
+        Aluno *atual = tabela->tabela[indice]->cabeca;
         while (atual != NULL) {
             printf("Matrícula: %09d, Nome: %s, Curso: %s, Ano: %d\n",
                    atual->Mat,

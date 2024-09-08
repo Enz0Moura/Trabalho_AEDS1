@@ -127,8 +127,9 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     NotaAluno *notaAux;
     Aluno *alAux;
     int indice = -1;
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        alAux = Turma->alunos->tabela[i]->cabeca;
+    for (int j = 0; j < Turma->alunos->contador_indices; j++) {
+        int ind = Turma->alunos->indices_validos[j];
+        alAux = Turma->alunos->tabela[ind]->cabeca;
         while (alAux != NULL) {
             indice++;
             printf("Digite a nota do aluno %s: ", alAux->name);
@@ -173,8 +174,9 @@ void realizaChamada(SalaDeAula *turma) {
     auxiliar->dia = data;
     Aluno *alAux;
     char c;
-    for (int j = 0; j < TABLE_SIZE; j++) {
-        alAux = turma->alunos->tabela[i]->cabeca;
+    for (int j = 0; j < turma->alunos->contador_indices; j++) {
+        int indice = turma->alunos->indices_validos[i];
+        alAux = turma->alunos->tabela[indice]->cabeca;
         while (alAux != NULL) {
             // fazendo para o primeiro cara
             printf("Marque a presenca do aluno %s (P/F)", alAux->name);
