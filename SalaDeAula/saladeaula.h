@@ -71,7 +71,7 @@ void cadastraAluno(SalaDeAula *turma) {
         char aux;
         int i = 0;
         while (i < MAX_AULAS && turma->aulas[i] != NULL) {
-            printf("\nPresenca do aluno no dia %d (P/F): ", turma->aulas[i]->dia);
+            printf("\nDigite a presenca de %s no dia %d (P/F): ", novo->name, turma->aulas[i]->dia);
             scanf("%c", &aux);
             flush_in();
             while (aux != 'P' && aux != 'F') {
