@@ -161,47 +161,53 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
 
 //todo dps da implementacao da qtdeFaltas fazer a verificacao 
 //se qtdeFaltas chegar a 10 printar aviso de reprovacao por falta
-void realizaChamada(SalaDeAula * turma){
+void realizaChamada(SalaDeAula *turma) {
     int data;
-    
+
     printf("\nDigite a data da aula: ");
     scanf("%d", &data);
-    
+    flush_in();
+
     int i = 0;
-    Dia * auxiliar = criaDia();
-    while (turma->aulas[i] != NULL)
-    {
+    Dia *auxiliar = criaDia();
+    while (turma->aulas[i] != NULL) {
         i++;
     }
 
     turma->aulas[i] = auxiliar;
-    if(turma->alunos->cabeca != NULL){
-        Aluno * alAux = turma->alunos->cabeca;
-    
+    auxiliar->dia = data;
+    if (turma->alunos->cabeca != NULL) {
+        Aluno *alAux = turma->alunos->cabeca;
+
         char c;
         // fazendo para o primeiro cara 
         printf("Marque a presenca do aluno %s (P/F)", alAux->name);
         scanf("%c", &c);
-        while(c != 'P' && c != 'F'){
+        flush_in();
+        while (c != 'P' && c != 'F') {
             printf("\nA presenca deve ser P ou F, digite novamente!");
             scanf("%c", &c);
+            flush_in();
         }
-        Presenca * auxPre = criaPresenca(alAux, c);
+        Presenca *auxPre = criaPresenca(alAux, c);
+        auxiliar->cabeca = auxPre;
         alAux = alAux->prox;
         // continuo na cabeca
-        while(alAux != NULL){
+        while (alAux != NULL) {
             printf("Marque a presenca do aluno %s (P/F)", alAux->name);
             scanf("%c", &c);
-            while(c != 'P' && c != 'F'){
-                    printf("\nA presenca deve ser P ou F, digite novamente!");
-                    scanf("%c", &c);
+            flush_in();
+            while (c != 'P' && c != 'F') {
+                printf("\nA presenca deve ser P ou F, digite novamente!");
+                scanf("%c", &c);
+                flush_in();
             }
             auxPre->prox = criaPresenca(alAux, c);
-            auxPre = auxPre->prox; 
-            alAux = alAux->prox;  
+            auxPre = auxPre->prox;
+            alAux = alAux->prox;
         }
     }
-}   
+}
 
 
 #endif
