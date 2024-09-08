@@ -208,14 +208,12 @@ void realizaChamada(SalaDeAula *turma) {
 }
 
 void relatorioAlunos(SalaDeAula *turma) {
-
-
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    TabelaHashAluno* tabela = turma->alunos;
+    TabelaHashAluno *tabela = turma->alunos;
     for (int i = 0; i < tabela->contador_indices; i++) {
         int indice = tabela->indices_validos[i];
         Aluno *aux = tabela->tabela[indice]->cabeca;
@@ -224,6 +222,25 @@ void relatorioAlunos(SalaDeAula *turma) {
             printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
             aux = aux->prox;
         }
+    }
+}
+
+void troca(int *vet, int i, int j) {
+    int aux = vet[i];
+    vet[i] = vet[j];
+    vet[j] = aux;
+}
+
+void selectionSort(int *vet, int n) {
+    int maior;
+    for (int i = 0; i < n - 1; i++) {
+        maior = i;
+        for (int j = i; j < n; j++) {
+            if (vet[j] > vet[maior]) {
+                maior = j;
+            }
+        }
+        troca(vet, i, maior);
     }
 }
 
@@ -258,11 +275,12 @@ void relatorioNotas(SalaDeAula *turma) {
             menor = aux->notas[i]->nota;
         i++;
     }
-    float media = soma /i+1;
+    float media = soma / i + 1;
     printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
 
 
     i = 0;
+    selectionSort(aux->notas, MAXLEN);
     while (aux->notas[i] != NULL) {
         printf("\n%f\n", aux->notas[i]->nota);
         i++;
