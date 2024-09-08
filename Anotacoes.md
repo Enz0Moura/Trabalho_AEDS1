@@ -7,7 +7,10 @@ Cadastra a nota maxima possivel da avaliacao; cadastra as notasde cada aluno par
 ## To Do's
 1. [x] 1 .c e 1 .h para aluno
 2. [x] 1.c e 1.h para avaliacoes
-3. [ ] 1.c e 1.h para hashing
-4. [x] Implementações de aluno
-5. [ ] Tabela hash de aluno
-6. [ ] Implementações sala de aula
+3. [x] Implementações de aluno
+4. [ ] Calculo da média com base na avaliação
+5. [ ] função de hash
+6. [ ] tabela hash
+7. [ ] sorteamento
+8. [ ] função de geração de extrato
+ 
