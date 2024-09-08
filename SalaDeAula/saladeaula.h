@@ -7,6 +7,7 @@
 #include "../Presenca/presenca.h"
 #include "../Avaliacao/avaliacao.h"
 #include "../utils/utils.h"
+#include "../Hashing/hashing.h"
 
 typedef struct __Aluno Aluno;
 typedef struct listaalunos ListaAlunos;
@@ -16,14 +17,14 @@ typedef struct __dia Dia;
 
 
 typedef struct saladeaula {
-    ListaAlunos *alunos;
+    TabelaHashAluno *alunos;
     ListaAvaliacoes *avaliacoes;
     Aulas aulas;
 } SalaDeAula;
 
 SalaDeAula *saladeaula_cria() {
     SalaDeAula *nova = (SalaDeAula *) malloc(sizeof(SalaDeAula));
-    nova->alunos = listaAlunos_cria();
+    nova->alunos = cria_tabela_hash_aluno();
     nova->avaliacoes = listaAvaliacoes_cria();
     for (int i = 0; i < MAX_AULAS; i++) {
         nova->aulas[i] = NULL;
@@ -48,24 +49,15 @@ void cadastraAluno(SalaDeAula *turma) {
     fgets(novo->curso, MAXTAM, stdin);
     remove_newline(novo->curso);
 
-    printf("\nDigite a matricula: ");
-    scanf("%d", &(novo->Mat));
-    flush_in();
-
     printf("\nDigite o ano de entrada do aluno: ");
     scanf("%d", &(novo->anoEntrada));
     flush_in();
 
+    gerar_matricula(novo);
 
     // colocando o aluno na lista de alunos da turma
 
-    if (turma->alunos->cabeca == NULL) {
-        turma->alunos->cabeca = novo;
-    } else {
-        Aluno *auxiliar = turma->alunos->fim;
-        auxiliar->prox = novo;
-    }
-    turma->alunos->fim = novo;
+    insere_tabela_aluno(turma->alunos, novo);
 
     if (turma->aulas[0] != NULL) {
         char aux;
@@ -131,21 +123,23 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     scanf("%f", &nova->valortotal);
     flush_in();
     // colocando a nota de cada aluno na avaliacao
-    Aluno *alAux = Turma->alunos->cabeca;
     float nota;
     NotaAluno *notaAux;
+    Aluno *alAux;
     int indice = -1;
-
-    while (alAux != NULL) {
-        indice++;
-        printf("Digite a nota do aluno %s: ", alAux->name);
-        scanf("%f", &nota);
-        flush_in();
-        notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
-        notaAux->aluno = alAux;
-        notaAux->nota = nota;
-        nova->notas[indice] = notaAux;
-        alAux = alAux->prox;
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        alAux = Turma->alunos->tabela[i]->cabeca;
+        while (alAux != NULL) {
+            indice++;
+            printf("Digite a nota do aluno %s: ", alAux->name);
+            scanf("%f", &nota);
+            flush_in();
+            notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
+            notaAux->aluno = alAux;
+            notaAux->nota = nota;
+            nova->notas[indice] = notaAux;
+            alAux = alAux->prox;
+        }
     }
 
     while (aux != NULL && aux->prox != NULL) {
@@ -159,7 +153,8 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
     return;
 }
 
-//todo dps da implementacao da qtdeFaltas fazer a verificacao 
+
+//todo dps da implementacao da qtdeFaltas fazer a verificacao
 //se qtdeFaltas chegar a 10 printar aviso de reprovacao por falta
 void realizaChamada(SalaDeAula *turma) {
     int data;
@@ -176,24 +171,12 @@ void realizaChamada(SalaDeAula *turma) {
 
     turma->aulas[i] = auxiliar;
     auxiliar->dia = data;
-    if (turma->alunos->cabeca != NULL) {
-        Aluno *alAux = turma->alunos->cabeca;
-
-        char c;
-        // fazendo para o primeiro cara 
-        printf("Marque a presenca do aluno %s (P/F)", alAux->name);
-        scanf("%c", &c);
-        flush_in();
-        while (c != 'P' && c != 'F') {
-            printf("\nA presenca deve ser P ou F, digite novamente!");
-            scanf("%c", &c);
-            flush_in();
-        }
-        Presenca *auxPre = criaPresenca(alAux, c);
-        auxiliar->cabeca = auxPre;
-        alAux = alAux->prox;
-        // continuo na cabeca
+    Aluno *alAux;
+    char c;
+    for (int j = 0; j < TABLE_SIZE; j++) {
+        alAux = turma->alunos->tabela[i]->cabeca;
         while (alAux != NULL) {
+            // fazendo para o primeiro cara
             printf("Marque a presenca do aluno %s (P/F)", alAux->name);
             scanf("%c", &c);
             flush_in();
@@ -202,9 +185,22 @@ void realizaChamada(SalaDeAula *turma) {
                 scanf("%c", &c);
                 flush_in();
             }
-            auxPre->prox = criaPresenca(alAux, c);
-            auxPre = auxPre->prox;
+            Presenca *auxPre = criaPresenca(alAux, c);
+            auxiliar->cabeca = auxPre;
             alAux = alAux->prox;
+            while (alAux != NULL) {
+                printf("Marque a presenca do aluno %s (P/F)", alAux->name);
+                scanf("%c", &c);
+                flush_in();
+                while (c != 'P' && c != 'F') {
+                    printf("\nA presenca deve ser P ou F, digite novamente!");
+                    scanf("%c", &c);
+                    flush_in();
+                }
+                auxPre->prox = criaPresenca(alAux, c);
+                auxPre = auxPre->prox;
+                alAux = alAux->prox;
+            }
         }
     }
 }
