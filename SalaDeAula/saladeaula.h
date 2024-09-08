@@ -241,6 +241,8 @@ void relatorioNotas(SalaDeAula *turma) {
         };
     }
 
+    printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
+
     int menor = aux->notas[0]->nota;
     int maior = aux->notas[0]->nota;
     int soma = 0;
@@ -253,6 +255,9 @@ void relatorioNotas(SalaDeAula *turma) {
             menor = aux->notas[i]->nota;
         i++;
     }
+    float media = soma /i+1;
+    printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
+
 
     i = 0;
     while (aux->notas[i] != NULL) {
