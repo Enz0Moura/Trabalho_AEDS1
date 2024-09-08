@@ -35,7 +35,5 @@ int main() {
         }
     }
     return -1;
-
-    cadastraAluno(sala);
 }
 //todo: A maneira que estamos fazendo para armazenar as notas é MUITO custosa.
