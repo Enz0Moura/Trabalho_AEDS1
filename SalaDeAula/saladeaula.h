@@ -256,12 +256,14 @@ void relatorioNotas(SalaDeAula *turma) {
     while (strcmp(aux->nome, nome) != 0) {
         aux = aux->prox;
         if (aux == NULL) {
-            printf("Nome da avaliacao nao existe!");
+            printf("Nome da avaliacao nao existe!\n");
             return;
         };
     }
 
-    printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
+    printf("|%*s%s%*s |\n", 31, "", nome, 31, "");
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
 
     float menor = aux->notas[0]->nota;
     float maior = aux->notas[0]->nota;
@@ -276,13 +278,13 @@ void relatorioNotas(SalaDeAula *turma) {
         i++;
     }
     float media = soma / i + 1;
-    printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
-
+    printf("| Maior Nota: %f | Menor Nota %f | Media: %f |", maior, menor, media);
+    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
 
     i = 0;
     selectionSort(aux->notas, MAXLEN);
     while (aux->notas[i] != NULL) {
-        printf("\n%f\n", aux->notas[i]->nota);
+        printf("\n| NOTA %d: %-55f |\n", i, aux->notas[i]->nota);
         i++;
     }
 }
