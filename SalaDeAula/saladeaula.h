@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "../Aluno/aluno.h"
 #include "../ListaAlunos/listaalunos.h"
 #include "../Presenca/presenca.h"
@@ -227,8 +228,9 @@ void relatorioAlunos(SalaDeAula *turma) {
     printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
-    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    printf("+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+\n");
     TabelaHashAluno *tabela = turma->alunos;
+    int fez = 0;
     for (int i = 0; i < tabela->contador_indices; i++) {
         int indice = tabela->indices_validos[i];
         Aluno *aux = tabela->tabela[indice]->cabeca;
@@ -237,6 +239,12 @@ void relatorioAlunos(SalaDeAula *turma) {
             printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
             aux = aux->prox;
         }
+        printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+        fez = 1;
+    }
+    if(!fez){
+        printf("|                    NAO EXISTEM ALUNOS CADASTRADOS!                    |\n");
+        printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
     }
 }
 
@@ -256,6 +264,7 @@ void selectionSort(NotaAluno **vet) {
         troca(vet, i, maior);
         i++;
     }
+    sleep(2);
 }
 
 void relatorioNotas(SalaDeAula *turma) {
@@ -302,6 +311,7 @@ void relatorioNotas(SalaDeAula *turma) {
     }else{
         printf("ERRO: Avaliacao nao possui notas cadastradas!\n");
     }
+    sleep(2);
 }
 
 #endif
