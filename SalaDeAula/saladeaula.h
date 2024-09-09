@@ -240,12 +240,6 @@ void relatorioAlunos(SalaDeAula *turma) {
     }
 }
 
-void troca(NotaAluno **vet, int i, int j) {
-    NotaAluno *aux = vet[i];
-    vet[i] = vet[j];
-    vet[j] = aux;
-}
-
 void selectionSort(NotaAluno **vet) {
     int maior;
     int i = 0;
