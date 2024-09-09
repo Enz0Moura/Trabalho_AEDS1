@@ -8,9 +8,11 @@ Cadastra a nota maxima possivel da avaliacao; cadastra as notasde cada aluno par
 1. [x] 1 .c e 1 .h para aluno
 2. [x] 1.c e 1.h para avaliacoes
 3. [x] Implementações de aluno
-4. [ ] Calculo da média com base na avaliação
+4. [x] Calculo da média com base na avaliação
 5. [x] função de hash
 6. [x] tabela hash
-7. [ ] sorteamento
-8. [ ] função de geração de extrato
+7. [x] sorteamento (notas)
+8. [ ] sorteamento
+8. [x] função de geração de extrato
+9. geração de extrato por aluno
  
