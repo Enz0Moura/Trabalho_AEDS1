@@ -40,17 +40,18 @@ int main() {
                     printf("\nOperacao invalida, tente novamente.\n");
                     break;
             }
-        printf("+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-        printf("|Sistema de gerenciamento escolar                        |");
-        printf("\n|Digite 1 para adicionar um aluno                      |");
-        printf("\n|Digite 2 para adicionar uma avaliação                 |");
-        printf("\n|Digite 3 para realizar a chamada                      |");
-        printf("\n|Digite 4 para para imprimir o relatorio de alunos     |");
-        printf("\n|Digite 5 para para imprimir o relatorio de notas      |");
-        printf("\n|Digite 6 para sair                                    |");
-        printf("\n+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+            printf("+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+            printf("|Sistema de gerenciamento escolar                        |");
+            printf("\n|Digite 1 para adicionar um aluno                      |");
+            printf("\n|Digite 2 para adicionar uma avaliação                 |");
+            printf("\n|Digite 3 para realizar a chamada                      |");
+            printf("\n|Digite 4 para para imprimir o relatorio de alunos     |");
+            printf("\n|Digite 5 para para imprimir o relatorio de notas      |");
+            printf("\n|Digite 6 para sair                                    |");
+            printf("\n+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
         }
     }
     return -1;
 }
+
 //todo: A maneira que estamos fazendo para armazenar as notas é MUITO custosa.
