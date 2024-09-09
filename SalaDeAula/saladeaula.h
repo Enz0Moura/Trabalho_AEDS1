@@ -225,22 +225,27 @@ void relatorioAlunos(SalaDeAula *turma) {
     }
 }
 
-void troca(int *vet, int i, int j) {
-    int aux = vet[i];
+void troca(NotaAluno **vet, int i, int j) {
+    NotaAluno *aux = vet[i];
     vet[i] = vet[j];
     vet[j] = aux;
 }
 
-void selectionSort(int *vet, int n) {
+void selectionSort(NotaAluno **vet) {
     int maior;
-    for (int i = 0; i < n - 1; i++) {
+    int i = 0;
+    int j;
+    while (vet[i] != NULL && i < MAXLEN) {
         maior = i;
-        for (int j = i; j < n; j++) {
-            if (vet[j] > vet[maior]) {
+        j = i + 1;
+        while (vet[j] != NULL && j < MAXLEN) {
+            if (vet[j]->nota > vet[maior]->nota) {
                 maior = j;
             }
+            j++;
         }
         troca(vet, i, maior);
+        i++;
     }
 }
 
@@ -282,7 +287,7 @@ void relatorioNotas(SalaDeAula *turma) {
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
 
     i = 0;
-    selectionSort(aux->notas, MAXLEN);
+    selectionSort(aux->notas);
     while (aux->notas[i] != NULL) {
         printf("\n| NOTA %d: %-55f |\n", i, aux->notas[i]->nota);
         i++;
