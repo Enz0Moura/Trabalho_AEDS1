@@ -270,27 +270,31 @@ void relatorioNotas(SalaDeAula *turma) {
     printf("|%*s%s%*s |\n", 31, "", nome, 31, "");
     printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
 
-    float menor = aux->notas[0]->nota;
-    float maior = aux->notas[0]->nota;
-    float soma = 0;
-    int i = 0;
-    while (aux->notas[i] != NULL && i < MAXLEN) {
-        soma += aux->notas[i]->nota;
-        if (aux->notas[i]->nota > maior)
-            maior = aux->notas[i]->nota;
-        if (aux->notas[i]->nota < menor)
-            menor = aux->notas[i]->nota;
-        i++;
-    }
-    float media = soma / i + 1;
-    printf("| Maior Nota: %f | Menor Nota %f | Media: %f |", maior, menor, media);
-    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
+    if(aux->notas[0] != NULL){
+        float menor = aux->notas[0]->nota;
+        float maior = aux->notas[0]->nota;
+        float soma = 0;
+        int i = 0;
+        while (aux->notas[i] != NULL && i < MAXLEN) {
+            soma += aux->notas[i]->nota;
+            if (aux->notas[i]->nota > maior)
+                maior = aux->notas[i]->nota;
+            if (aux->notas[i]->nota < menor)
+                menor = aux->notas[i]->nota;
+            i++;
+        }
+        float media = soma / i + 1;
+        printf("| Maior Nota: %f | Menor Nota %f | Media: %f |", maior, menor, media);
+        printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=+\n");
 
-    i = 0;
-    selectionSort(aux->notas);
-    while (aux->notas[i] != NULL) {
-        printf("\n| NOTA %d: %-55f |\n", i, aux->notas[i]->nota);
-        i++;
+        i = 0;
+        selectionSort(aux->notas);
+        while (aux->notas[i] != NULL) {
+            printf("\n| NOTA %d: %-55f |\n", i, aux->notas[i]->nota);
+            i++;
+        }
+    }else{
+        printf("ERRO: Avaliacao nao possui notas cadastradas!\n");
     }
 }
 
