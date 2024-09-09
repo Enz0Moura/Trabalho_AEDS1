@@ -33,6 +33,16 @@ SalaDeAula *saladeaula_cria() {
     return nova;
 };
 
+void verificaFaltas(Aluno * aluno){
+    if(aluno->qtdeFaltas == 10){
+        printf("Aluno %s reprovado por faltas!\n", aluno->name);
+    }
+}
+
+void addFalta(Aluno * aluno, char c){
+    if(c == 'F') aluno->qtdeFaltas++;
+}
+
 void cadastraAluno(SalaDeAula *turma) {
     printf("+=-=-=-=-=-=-=-=-=+\n");
     printf("|CADASTRE UM ALUNO|");
@@ -73,6 +83,8 @@ void cadastraAluno(SalaDeAula *turma) {
                 flush_in();
             }
             bool foi = aux == 'P' ? true : false; // se foi retorna true se nao retorna false
+            addFalta(novo, aux);
+            verificaFaltas(novo);
             Presenca *hj = turma->aulas[i]->cabeca;
             while (hj->prox != NULL) {
                 hj = hj->prox;
@@ -188,6 +200,7 @@ void realizaChamada(SalaDeAula *turma) {
                 flush_in();
             }
             Presenca *auxPre = criaPresenca(alAux, c);
+            verificaFaltas(alAux); //verifico a falta dps pq o cria presenca que incrementa o qtdefaltas
             auxiliar->cabeca = auxPre;
             alAux = alAux->prox;
             while (alAux != NULL) {
@@ -200,6 +213,7 @@ void realizaChamada(SalaDeAula *turma) {
                     flush_in();
                 }
                 auxPre->prox = criaPresenca(alAux, c);
+                verificaFaltas(alAux);
                 auxPre = auxPre->prox;
                 alAux = alAux->prox;
             }
