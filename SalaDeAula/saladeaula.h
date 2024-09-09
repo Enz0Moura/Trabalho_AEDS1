@@ -9,6 +9,7 @@
 #include "../Avaliacao/avaliacao.h"
 #include "../utils/utils.h"
 #include "../Hashing/hashing.h"
+#include "../Sorting/sorting.h"
 
 typedef struct __Aluno Aluno;
 typedef struct listaalunos ListaAlunos;
@@ -239,30 +240,6 @@ void relatorioAlunos(SalaDeAula *turma) {
     }
 }
 
-void troca(NotaAluno **vet, int i, int j) {
-    NotaAluno *aux = vet[i];
-    vet[i] = vet[j];
-    vet[j] = aux;
-}
-
-void selectionSort(NotaAluno **vet) {
-    int maior;
-    int i = 0;
-    int j;
-    while (vet[i] != NULL && i < MAXLEN) {
-        maior = i;
-        j = i + 1;
-        while (vet[j] != NULL && j < MAXLEN) {
-            if (vet[j]->nota > vet[maior]->nota) {
-                maior = j;
-            }
-            j++;
-        }
-        troca(vet, i, maior);
-        i++;
-    }
-}
-
 void relatorioNotas(SalaDeAula *turma) {
     char nome[MAXLEN];
     printf("Digite o nome da avaliacao que deseja consultar: ");
@@ -275,7 +252,7 @@ void relatorioNotas(SalaDeAula *turma) {
     while (strcmp(aux->nome, nome) != 0) {
         aux = aux->prox;
         if (aux == NULL) {
-            printf("Nome da avaliacao nao existe!");
+            printf("\nNome da avaliacao nao existe!\n");
             return;
         };
     }
@@ -295,13 +272,13 @@ void relatorioNotas(SalaDeAula *turma) {
         i++;
     }
     float media = soma / i + 1;
-    printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
+    printf("| Maior Nota: %.2f | Menor Nota %.2f | Media: %.2f", maior, menor, media);
 
 
     i = 0;
-    selectionSort(aux->notas);
+    selectionSortNotaAluno(aux->notas);
     while (aux->notas[i] != NULL) {
-        printf("\n%f\n", aux->notas[i]->nota);
+        printf("\n%.2f\n", aux->notas[i]->nota);
         i++;
     }
 }
