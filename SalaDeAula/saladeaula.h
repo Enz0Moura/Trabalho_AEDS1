@@ -240,6 +240,30 @@ void relatorioAlunos(SalaDeAula *turma) {
     }
 }
 
+void troca(NotaAluno **vet, int i, int j) {
+    NotaAluno *aux = vet[i];
+    vet[i] = vet[j];
+    vet[j] = aux;
+}
+
+void selectionSort(NotaAluno **vet) {
+    int maior;
+    int i = 0;
+    int j;
+    while (vet[i] != NULL && i < MAXLEN) {
+        maior = i;
+        j = i + 1;
+        while (vet[j] != NULL && j < MAXLEN) {
+            if (vet[j]->nota > vet[maior]->nota) {
+                maior = j;
+            }
+            j++;
+        }
+        troca(vet, i, maior);
+        i++;
+    }
+}
+
 void relatorioNotas(SalaDeAula *turma) {
     char nome[MAXLEN];
     printf("Digite o nome da avaliacao que deseja consultar: ");
@@ -258,28 +282,31 @@ void relatorioNotas(SalaDeAula *turma) {
     }
 
     printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
+    if(aux->notas[0] != NULL) {
+        float menor = aux->notas[0]->nota;
+        float maior = aux->notas[0]->nota;
+        float soma = 0;
+        int i = 0;
+        while (aux->notas[i] != NULL && i < MAXLEN) {
+            soma += aux->notas[i]->nota;
+            if (aux->notas[i]->nota > maior)
+                maior = aux->notas[i]->nota;
+            if (aux->notas[i]->nota < menor)
+                menor = aux->notas[i]->nota;
+            i++;
+        }
+        float media = soma / i + 1;
+        printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
 
-    float menor = aux->notas[0]->nota;
-    float maior = aux->notas[0]->nota;
-    float soma = 0;
-    int i = 0;
-    while (aux->notas[i] != NULL && i < MAXLEN) {
-        soma += aux->notas[i]->nota;
-        if (aux->notas[i]->nota > maior)
-            maior = aux->notas[i]->nota;
-        if (aux->notas[i]->nota < menor)
-            menor = aux->notas[i]->nota;
-        i++;
-    }
-    float media = soma / i + 1;
-    printf("| Maior Nota: %.2f | Menor Nota %.2f | Media: %.2f", maior, menor, media);
 
-
-    i = 0;
-    selectionSortNotaAluno(aux->notas);
-    while (aux->notas[i] != NULL) {
-        printf("\n%.2f\n", aux->notas[i]->nota);
-        i++;
+        i = 0;
+        selectionSortNotaAluno(aux->notas);
+        while (aux->notas[i] != NULL) {
+            printf("\n| NOTA %d: %.2f |\n", i, aux->notas[i]->nota);
+            i++;
+        }
+    }else{
+        printf("ERRO: Avaliacao nao possui notas cadastradas!\n");
     }
 }
 
