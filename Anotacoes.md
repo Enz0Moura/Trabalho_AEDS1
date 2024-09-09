@@ -14,5 +14,5 @@ Cadastra a nota maxima possivel da avaliacao; cadastra as notasde cada aluno par
 7. [x] sorteamento (notas)
 8. [ ] sorteamento
 8. [x] função de geração de extrato
-9. geração de extrato por aluno
+9. [ ] geração de extrato por aluno
  
