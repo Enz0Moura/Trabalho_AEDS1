@@ -14,7 +14,7 @@
 typedef struct __Aluno Aluno;
 typedef struct listaalunos ListaAlunos;
 
-
+//
 typedef struct __tabelaHashAluno {
     ListaAlunos *tabela[TABLE_SIZE];
     int indices_validos[TABLE_SIZE];
@@ -108,7 +108,6 @@ void percorrer_tabela(TabelaHashAluno *tabela) {
         }
     }
 }
-
 
 
 #endif //HASHING_H
