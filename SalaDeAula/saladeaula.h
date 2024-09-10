@@ -302,7 +302,7 @@ void relatorioNotas(SalaDeAula *turma) {
                 menor = aux->notas[i]->nota;
             i++;
         }
-        float media = soma / i + 1;
+        float media = soma / i;
         printf("| Maior Nota: %f | Menor Nota %f | Media: %f", maior, menor, media);
 
 
