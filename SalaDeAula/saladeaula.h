@@ -282,14 +282,10 @@ void relatorioNotas(SalaDeAula *turma) {
     remove_newline(nome);
 
     Avaliacao *aux = turma->avaliacoes->cabeca;
-    if (aux == NULL) return;
 
-    while (strcmp(aux->nome, nome) != 0) {
-        aux = aux->prox;
-        if (aux == NULL) {
-            printf("\nNome da avaliacao nao existe!\n");
+    if (aux == NULL){
+         printf("\nAvaliacao %s nao foi cadastrada!\n", nome);
             return;
-        };
     }
 
     printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
