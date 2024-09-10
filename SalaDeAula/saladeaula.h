@@ -35,14 +35,14 @@ SalaDeAula *saladeaula_cria() {
     return nova;
 };
 
-void verificaFaltas(Aluno * aluno){
-    if(aluno->qtdeFaltas == 10){
+void verificaFaltas(Aluno *aluno) {
+    if (aluno->qtdeFaltas == 10) {
         printf("Aluno %s reprovado por faltas!\n", aluno->name);
     }
 }
 
-void addFalta(Aluno * aluno, char c){
-    if(c == 'F') aluno->qtdeFaltas++;
+void addFalta(Aluno *aluno, char c) {
+    if (c == 'F') aluno->qtdeFaltas++;
 }
 
 void cadastraAluno(SalaDeAula *turma) {
@@ -227,27 +227,52 @@ void realizaChamada(SalaDeAula *turma) {
 }
 
 void relatorioAlunos(SalaDeAula *turma) {
-    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    printf("|%*s%s%*s|\n", 26, "", "RELATORIO DE ALUNOS", 26, "");
-    printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    printHeader("MATRICULA", "NOME", "SOMA NOTAS", "FALTAS");
-    printf("+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-+\n");
     TabelaHashAluno *tabela = turma->alunos;
-    int fez = 0;
-    for (int i = 0; i < tabela->contador_indices; i++) {
-        int indice = tabela->indices_validos[i];
-        Aluno *aux = tabela->tabela[indice]->cabeca;
-        while (aux != NULL) {
-            printTabela(aux->Mat, aux->name, aux->somaNotas, aux->qtdeFaltas);
-            aux = aux->prox;
-        }
-        printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-        fez = 1;
+    char cmp;
+    printf("\nDigite sua preferência de ordenação. Opções:\nn-Nome\nc-Curso\nm-Matricula\ns-Soma de notas\nf-Faltas\nAperte x para sair.\nEscolha: ");
+    scanf("%c", &cmp);
+    flush_in();
+    while (cmp != 'n' && cmp != 'c' && cmp != 's' && cmp != 'f' && cmp != 'm') {
+        printf("\nEntrada inválida, escolha entre as opcoes disponiveis: ");
+        scanf("%c", &cmp);
+        flush_in();
     }
-    if(!fez){
-        printf("|                    NAO EXISTEM ALUNOS CADASTRADOS!                    |\n");
-        printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+
+
+    char m;
+    printf("\nDigite o método de sorteamento escolhido, escolha entre Merge Sort (m) ou Selection Sort (s): ");
+    scanf("%c", &m);
+    flush_in();
+
+    while (m != 's' && m != 'm') {
+        printf("\nEntrada inválida, escolha entre Merge Sort (m) ou Selection Sort (s): ");
+        scanf("%c", &m);
+        flush_in();
     }
+    switch (cmp) {
+        case 'n':
+            imprimirListasOrdenadas(tabela, comparaPorNome, m);
+            break;
+        case 'c':
+            imprimirListasOrdenadas(tabela, comparaPorCurso, m);
+            break;
+        case 'm':
+            imprimirListasOrdenadas(tabela, comparaPorMatricula, m);
+            break;
+        case 'f':
+            imprimirListasOrdenadas(tabela, comparaPorQtdeFaltas, m);
+            break;
+        case 's':
+            //todo não implementado
+            break;
+        case 'x':
+            return;
+        default:
+            printf("\nOpcao invalida!\n");
+            return;
+    }
+
+
 }
 
 void relatorioNotas(SalaDeAula *turma) {
@@ -268,7 +293,7 @@ void relatorioNotas(SalaDeAula *turma) {
     }
 
     printf("|%*s%s%*s|\n", 15, "", nome, 15, "");
-    if(aux->notas[0] != NULL) {
+    if (aux->notas[0] != NULL) {
         float menor = aux->notas[0]->nota;
         float maior = aux->notas[0]->nota;
         float soma = 0;
@@ -286,12 +311,14 @@ void relatorioNotas(SalaDeAula *turma) {
 
 
         i = 0;
-        selectionSortNotaAluno(aux->notas);
+        //selectionSortNotaAluno(aux->notas);
+        int tamanho = calcularTamanhoVetorNotaAluno(aux->notas);
+        mergeSortNotaAluno(aux->notas, 0, tamanho - 1);
         while (aux->notas[i] != NULL) {
             printf("\n| NOTA %d: %.2f |\n", i, aux->notas[i]->nota);
             i++;
         }
-    }else{
+    } else {
         printf("ERRO: Avaliacao nao possui notas cadastradas!\n");
     }
     sleep(2);

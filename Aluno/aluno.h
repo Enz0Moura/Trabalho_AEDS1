@@ -21,7 +21,7 @@ typedef struct __Aluno {
     int anoEntrada;
     struct __Aluno *prox;
     int qtdeFaltas;
-    int somaNotas;
+    int somaNotas; //todo tem que implementas.
 } Aluno;
 
 
