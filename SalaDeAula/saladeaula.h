@@ -53,6 +53,7 @@ void cadastraAluno(SalaDeAula *turma) {
     Aluno *novo = (Aluno *) malloc(sizeof(Aluno));
     novo->prox = NULL;
     novo->qtdeFaltas = 0;
+    novo->somaNotas = 0;
 
     printf("Digite o nome do aluno: ");
     fgets(novo->name, MAXTAM, stdin);
@@ -118,6 +119,7 @@ void cadastraAluno(SalaDeAula *turma) {
             notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
             notaAux->aluno = novo;
             notaAux->nota = nota;
+            novo->somaNotas += nota;
             aux->notas[indice] = notaAux;
             aux = aux->prox;
         }
@@ -152,6 +154,7 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
             notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
             notaAux->aluno = alAux;
             notaAux->nota = nota;
+            alAux->somaNotas += nota;
             nova->notas[indice] = notaAux;
             alAux = alAux->prox;
         }
@@ -235,8 +238,7 @@ void relatorioAlunos(SalaDeAula *turma) {
         int indice = tabela->indices_validos[i];
         Aluno *aux = tabela->tabela[indice]->cabeca;
         while (aux != NULL) {
-            int somaNotas = 0;
-            printTabela(aux->Mat, aux->name, somaNotas, aux->qtdeFaltas);
+            printTabela(aux->Mat, aux->name, aux->somaNotas, aux->qtdeFaltas);
             aux = aux->prox;
         }
         printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");

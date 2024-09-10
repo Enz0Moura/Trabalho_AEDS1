@@ -10,7 +10,7 @@ typedef struct __Aluno Aluno;
 typedef struct __presenca{
     Aluno * aluno;
     bool foi;
-    struct __presenca * prox; // ponteiro para a presenca do prox aluno
+    struct __presenca * prox;
 } Presenca;
 
 typedef struct __dia{
