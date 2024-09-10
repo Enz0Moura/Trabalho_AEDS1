@@ -51,6 +51,7 @@ void cadastraAluno(SalaDeAula *turma) {
     printf("\n+=-=-=-=-=-=-=-=-=+\n");
 
     Aluno *novo = (Aluno *) malloc(sizeof(Aluno));
+    novo->somaNotas = 0;
     novo->prox = NULL;
     novo->qtdeFaltas = 0;
 
@@ -110,6 +111,7 @@ void cadastraAluno(SalaDeAula *turma) {
             printf("Digite a nota de %s na avalicao %s: ", novo->name, aux->nome);
             scanf("%f", &nota);
             flush_in();
+            novo->somaNotas += nota;
 
             int indice = 0;
             while (aux->notas[indice] != NULL) {
@@ -149,6 +151,7 @@ void cadastraAvaliacao(SalaDeAula *Turma) {
             printf("Digite a nota do aluno %s: ", alAux->name);
             scanf("%f", &nota);
             flush_in();
+            alAux->somaNotas += nota;
             notaAux = (NotaAluno *) malloc(sizeof(NotaAluno));
             notaAux->aluno = alAux;
             notaAux->nota = nota;

@@ -10,8 +10,6 @@
 // presenca nao pode estar dentro de aluno pq se nao ao cadastrar um novo
 // nao tenho como saber se ja existem chamadas que foram realizadas
 
-//todo adicionar forma de armazenar faltas
-
 typedef struct saladeaula SalaDeAula;
 
 typedef struct __Aluno {
