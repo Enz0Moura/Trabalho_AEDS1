@@ -5,6 +5,8 @@ September 2024
 
 ## Vídeo de Apresentação
 
+O vídeo de apresentação pode ser encontrado nesse link: [Apresentacao AEDS](https://cefetrjbr-my.sharepoint.com/:v:/g/personal/12929052716_cefet-rj_br/EaWtOR0M2ntEks_0zTw--YYB6igJFH-h2VbG-Q9xt57HAw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=lVEe03)
+
 ## Introdução
 
 O relatório a seguir documenta a implementação e o funcionamento de um sistema para controle de uma sala de aula com no máximo 100 (cem) alunos. Serão descritos detalhadamente a seguir os Tipos Abstratos de Dados (TADs) criados, bem como as funções implementadas para manipulá-los.
