@@ -219,6 +219,10 @@ int comparaPorQtdeFaltas(Aluno *a, Aluno *b) {
     return a->qtdeFaltas - b->qtdeFaltas;
 }
 
+int comparaPorsomaNotas(Aluno *a, Aluno *b) {
+    return a->somaNotas - b->somaNotas;
+}
+
 
 int calcularTamanhoVetorAluno(Aluno **vet) {
     int count = 0;
@@ -258,7 +262,7 @@ void imprimirListasOrdenadas(TabelaHashAluno *tabela, int (*compara)(Aluno *, Al
     for (int i = 0; i < tabela->contador_indices; i++) {
         Aluno *aux = listasOrdenadas[i];
         while (aux != NULL) {
-            printTabela(aux->Mat, aux->name, 0, aux->qtdeFaltas);
+            printTabela(aux->Mat, aux->name, aux->somaNotas, aux->qtdeFaltas);
             aux = aux->prox;
         }
         printf("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");

@@ -263,7 +263,7 @@ void relatorioAlunos(SalaDeAula *turma) {
             imprimirListasOrdenadas(tabela, comparaPorQtdeFaltas, m);
             break;
         case 's':
-            //todo não implementado
+            imprimirListasOrdenadas(tabela, comparaPorsomaNotas, m);
             break;
         case 'x':
             return;
