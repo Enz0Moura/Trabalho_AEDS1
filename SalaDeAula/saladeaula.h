@@ -248,25 +248,6 @@ void relatorioAlunos(SalaDeAula *turma) {
     }
 }
 
-void selectionSort(NotaAluno **vet) {
-    int maior;
-    int i = 0;
-    int j;
-    while (vet[i] != NULL && i < MAXLEN) {
-        maior = i;
-        j = i + 1;
-        while (vet[j] != NULL && j < MAXLEN) {
-            if (vet[j]->nota > vet[maior]->nota) {
-                maior = j;
-            }
-            j++;
-        }
-        troca(vet, i, maior);
-        i++;
-    }
-    sleep(2);
-}
-
 void relatorioNotas(SalaDeAula *turma) {
     char nome[MAXLEN];
     printf("Digite o nome da avaliacao que deseja consultar: ");
