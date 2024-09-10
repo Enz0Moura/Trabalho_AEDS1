@@ -19,7 +19,7 @@ typedef struct __Aluno {
     int anoEntrada;
     struct __Aluno *prox;
     int qtdeFaltas;
-    int somaNotas; //todo tem que implementas.
+    float somaNotas;
 } Aluno;
 
 

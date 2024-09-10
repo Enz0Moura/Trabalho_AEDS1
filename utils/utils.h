@@ -17,8 +17,8 @@ void remove_newline(char *str) {
 }
 
 
-void printTabela(int mat, char * name, int notas, int faltas){
-    printf("| %-15d | %-15s | %-15d | %-15d |\n", mat, name, notas, faltas);
+void printTabela(int mat, char * name, float notas, int faltas){
+    printf("| %-15d | %-15s | %-15.2f | %-15d |\n", mat, name, notas, faltas);
 }
 
 void printHeader(char * s1, char * s2, char * s3, char * s4){
