@@ -142,10 +142,9 @@ A função main implementa um menu que permite ao usuário interagir com o progr
 
 Algumas decisões importantes tomadas ao longo do projeto:
 
-- A criação de uma tabela hash de alunos, utilizando a matrícula como chave, calculada a partir de atributos do aluno, foi essencial para a eficiência dos relatórios.
-- Utilizamos a soma ponderada dos códigos ASCII do nome do aluno, curso e ano de matrícula para minimizar colisões.
-- Presença e avaliações utilizam listas encadeadas simples, visto que o acesso direto não é necessário.
-- A estrutura `SalaDeAula` encapsula todas as outras TADs, tornando o projeto mais legível.
-- O uso de um vetor auxiliar de índices inseridos na tabela hash melhorou o desempenho do relatório de alunos.
-- Hash de divisão foi utilizada por sua simplicidade e desempenho satisfatório.
-- Dois algoritmos de ordenação foram implementados: selection sort (O(n²)) e merge sort (O(nlogn)).
+* **Uso de Tabela Hash**: Utilizada para armazenar alunos e otimizar buscas e inserções, minimizando colisões com uma chave baseada em atributos únicos dos alunos.
+* **Estruturas Encadeadas para Presenças e Avaliações**: Simplicidade e eficiência para operações de consulta e geração de relatórios.
+* **Encapsulamento na TAD SalaDeAula**: Centraliza o gerenciamento de todos os dados de alunos, presenças e avaliações, facilitando a manutenção.
+* **Algoritmos de Ordenação**: Integração de merge sort e selection sort para flexibilidade na geração de relatórios com base na natureza dos dados.
+* **Gestão de Reprovações por Faltas**: Armazena faltas diretamente na TAD Aluno para permitir verificações rápidas e avisos imediatos.
+* **Modularidade**: Divisão do sistema em módulos distintos para maior clareza, manutenção e escalabilidade.
