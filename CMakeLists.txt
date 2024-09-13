@@ -17,7 +17,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/objs)
 add_library(trabalho STATIC ${SOURCES})
 
 
-add_executable(programa main.c)
+add_executable(programa main.c
+        utils/utils.c
+        ListaAlunos/listaalunos.c
+        Hashing/hashing.c
+        Avaliacao/avaliacao.c
+        Sorting/sorting.c
+        Presenca/presenca.c
+        SalaDeAula/saladeaula.c
+)
 
 
 target_link_libraries(programa trabalho)

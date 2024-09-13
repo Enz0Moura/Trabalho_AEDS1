@@ -14,11 +14,6 @@ typedef struct listaalunos {
     Aluno *fim;
 } ListaAlunos;
 
-ListaAlunos *listaAlunos_cria() {
-    ListaAlunos *l = (ListaAlunos *) malloc(sizeof(ListaAlunos));
-    l->cabeca = NULL;
-    l->fim = NULL;
-    return l;
-};
+ListaAlunos *listaAlunos_cria();
 
 #endif //LISTAALUNOS_H

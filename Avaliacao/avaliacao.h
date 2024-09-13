@@ -15,8 +15,6 @@ typedef struct _notaaluno {
     Aluno *aluno;
 } NotaAluno;
 
-// todo cria avaliacao inicializa notas com NULL
-
 typedef struct __avaliacao {
     char nome[MAXLEN];
     float valortotal;
@@ -28,10 +26,6 @@ typedef struct __listaavaliacoes {
     Avaliacao *cabeca;
 } ListaAvaliacoes;
 
-ListaAvaliacoes *listaAvaliacoes_cria() {
-    ListaAvaliacoes *l = (ListaAvaliacoes *) malloc(sizeof(ListaAvaliacoes));
-    l->cabeca = NULL;
-    return l;
-};
+ListaAvaliacoes *listaAvaliacoes_cria();
 
 #endif //AVALIACAO_H
